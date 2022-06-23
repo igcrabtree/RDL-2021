@@ -1,0 +1,59 @@
+﻿@model RDL.Models.TeamQuestion
+@{
+    ViewBag.Title = "Answer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    #a, #b, #c, #d, #submitbtn{
+        margin: 20px auto;
+        display: block;
+        height: 50px;
+        font-size: 20px;
+    }
+    #selectedAnswer{
+        text-align: center;
+        margin: 0 auto;
+        display: block;
+        font-size: 20px;
+    }
+    #submitbtn {
+        background-color: red;
+    }
+</style>
+
+<button type="button" id="a" onclick="ansA()" class="btn btn-primary">@Model.qA</button>
+<br />
+<button type="button" id="b" onclick="ansB()" class="btn btn-primary">@Model.qB</button>
+<br />
+<button type="button" id="c" onclick="ansC()" class="btn btn-primary">@Model.qC</button>
+<br />
+<button type="button" id="d" onclick="ansD()" class="btn btn-primary">@Model.qD</button>
+@using(Html.BeginForm("AddPoints", "Teams"))
+{
+    @Html.HiddenFor(m => m.teamId);
+    @Html.HiddenFor(m => m.answer);
+    <label id="selectedAnswer">Answer: </label>
+    <button id="submitbtn" type="submit" class="btn btn-primary">Submit Answer</button>
+}
+
+<script>
+    //let x = parseInt(document.getElementById('team_').value) * 10;
+    document.getElementById('teamId').value = @Model.teamId;
+    function ansA() {
+        document.getElementById('answer').value = 1;
+        document.getElementById('selectedAnswer').innerHTML = 'Answer: A';
+    }
+    function ansB() {
+        document.getElementById('answer').value = 2;
+        document.getElementById('selectedAnswer').innerHTML = 'Answer: B';
+    }
+    function ansC() {
+        document.getElementById('answer').value = 3;
+        document.getElementById('selectedAnswer').innerHTML = 'Answer: C';
+    }
+    function ansD() {
+        document.getElementById('answer').value = 4;
+        document.getElementById('selectedAnswer').innerHTML = 'Answer: D';
+    }
+</script>
+

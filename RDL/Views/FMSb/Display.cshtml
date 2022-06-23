@@ -1,0 +1,11 @@
+﻿@model RDL.ViewModels.BlueDisplayViewModel
+@{
+    ViewBag.Title = "Blue";
+    Layout = null;
+}
+<p>@Model.blue.bBeacon</p>
+<p>@Model.blue.bSeismometer</p>
+<p>@Model.Questions[Model.blue.currentQuestion].Question</p>
+<p>@Model.Questions[Model.blue.currentQuestion].AnswerA|@Model.Questions[Model.blue.currentQuestion].AnswerB|@Model.Questions[Model.blue.currentQuestion].AnswerC|@Model.Questions[Model.blue.currentQuestion].AnswerD</p>
+<p>@Model.blue.fogMachine</p>
+<p>@Model.blue.fan</p>

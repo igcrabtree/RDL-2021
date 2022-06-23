@@ -1,0 +1,19 @@
+﻿@model RDL.Models.Team
+@{
+    ViewBag.Title = "Bonus Question";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
+<form action="/Scores/AddQ" method="post" target="dummyframe">
+    <input type="hidden" name="Id" id="Id" value=@Model.Id ClientMode="static" />
+    <button type="submit" class="btn btn-primary">Add Question for Team @Model.Id</button>
+</form>
+<iframe name="dummyframe2" id="dummyframe2" style="display: none;"></iframe>
+<form action="/Scores/ResetQ" method="post" target="dummyframe2">
+    <input type="hidden" name="Id" id="Id" value=@Model.Id ClientMode="static" />
+    <button type="submit" class="btn btn-primary">Reset Questions for Team @Model.Id</button>
+</form>
+
+

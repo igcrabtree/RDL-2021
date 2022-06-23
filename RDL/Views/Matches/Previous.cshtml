@@ -1,0 +1,38 @@
+﻿@model IEnumerable<RDL.Models.Match>
+@{
+    ViewBag.Title = "Previous";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Previous Matches</h2>
+@if (!Model.Any())
+{
+    <p>No matches have been played yet.</p>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Match Number</th>
+                <th>Red Team</th>
+                <th>Blue Team</th>
+                <th>Red Team Score</th>
+                <th>Blue Team Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var match in Model)
+            {
+                <tr>
+                    <td>@match.Id</td>
+                    <td>@match.RedTeamName</td>
+                    <td>@match.BlueTeamName</td>
+                    <td>@match.RedTeamScore</td>
+                    <td>@match.BlueTeamScore</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+

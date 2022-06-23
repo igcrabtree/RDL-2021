@@ -1,0 +1,20 @@
+﻿@model RDL.Models.Team
+@{
+    ViewBag.Title = Model.Name + " Score";
+}
+<meta http-equiv="refresh" content="1">
+
+<style>
+    #teamName {
+        text-align: center;
+        margin-bottom: 5%;
+        font-size: 120px;
+    }
+    #teamScore {
+        text-align: center;
+        font-size: 130px;
+    }
+</style>
+
+<h1 id="teamName">@Model.Name</h1>
+<h1 id="teamScore">@Model.Score</h1>

@@ -1,0 +1,113 @@
+﻿@model RDL.Models.Blue
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    #all-time {
+        margin-top: 20%;
+        margin-bottom: 5%;
+        text-align: center;
+        font-size: 120px;
+    }
+    #start-btn{
+        height: 50px;
+        width: 200px;
+        font-size: 20px;
+        margin: 0 auto;
+        display: block;
+    }
+</style>
+
+
+<h1 id="all-time"><span id="extra-min">1</span><span id="min">0</span> <span>:</span> <span id="extra-sec">0</span><span id="sec">0</span></h1>
+<button id="start-btn" class="btn btn-primary">Start</button>
+<iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
+<form id="fog" action="/Clock/Change" method="post" target="dummyframe">
+    <input type="hidden" name="fogMachine" id="fogMachine" value="0" ClientMode="static" />
+    <input type="hidden" name="fan" id="fan" value="0" ClientMode="static" />
+    @Html.HiddenFor(m => m.Id)
+</form>
+
+<script>
+    // Timer on process, it works for now but there is a ton of work left to make it a good app. Still, it makes it's VERY specific job, so cool
+
+    let min = document.getElementById("min");
+    let sec = document.getElementById("sec");
+    let extraSec = document.getElementById("extra-sec");
+    let extraMin = document.getElementById("extra-min");
+    let startButton = document.getElementById("start-btn");
+    let allTime = document.getElementById("all-time");
+
+    let secVal = 0;
+    let minVal = 10;
+    let counter = 0;
+    // Function used inside TimeHandler when 15 minutes is reached
+    function myStopFunction() {
+        clearInterval(timer);
+        startButton.disabled = false;
+        // setTimeout(()=>alert("Finished!"),0)
+    }
+
+    // Main function
+    function timeHandler() {
+        if (minVal == 10 && secVal == 0) {
+            document.getElementById('fogMachine').value = 1;
+            //document.getElementById('fan').value = 1;
+            document.getElementById('fog').submit();
+        }
+        if (counter == 900) {
+            allTime.style.color = "red";
+            myStopFunction();
+            return;
+        }
+        // update counter each second
+        counter++;
+        console.log(counter);
+        secVal--;
+        sec.innerHTML = secVal;
+        // Take care of the extra zeroes
+        if (secVal > 9) {
+            extraSec.style.display = "none";
+        }
+        if (minVal > 9) {
+            extraMin.style.display = "none";
+        }
+        
+        if (minVal == 9 && secVal == 45) {
+            document.getElementById('fogMachine').value = 0;
+            document.getElementById('fan').value = 1;
+            document.getElementById('fog').submit();
+        }
+        if (minVal == 9 && secVal == 30) {
+            document.getElementById('fan').value = 0;
+            document.getElementById('fog').submit();
+        }
+  
+        // Resets the seconds display an value each minute
+        if (secVal == 60) {
+            sec.innerHTML = 0;
+            extraSec.style.display = "inline";
+            minVal++;
+            min.innerHTML = minVal;
+            secVal = 0;
+        }
+        if (secVal < 0) {
+            sec.innerHTML = 59;
+            extraSec.style.display = "inline";
+            extraSec.style.display = "none";
+            minVal--;
+            min.innerHTML = minVal;
+            secVal = 59;
+        }
+    }
+
+    // Calls the function every second
+    let timer = function () {
+        startButton.disabled = true;
+        setInterval(timeHandler, 1000);
+    }
+    // Event handler
+    startButton.addEventListener("click", timer);
+
+</script>

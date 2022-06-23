@@ -1,0 +1,1080 @@
+﻿@model RDL.Models.Score
+@{
+    ViewBag.Title = "Score";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Add New Team</h2>
+<iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
+<form id="scoreTeams" action="/Scores/Update" method="post" target="dummyframe">
+    <div class="form-group">
+        <label for="teamId">Team Number</label>
+        @Html.TextBoxFor(m => m.teamId, new { @class = "form-control", required = "required" })
+    </div>
+
+    <div class="form-group">
+        <label for="siesmometer">Seismometer</label>
+        <br />
+        <label id="current-seis-points" class="current-points">Current Points: 0</label>
+        <input type="hidden" name="siesmometer" id="siesmometer" value="" ClientMode="static" />
+        <br />
+        <button type="button" id="seisT" class="btn btn-primary" onclick="seisTeleop()">Teleop</button>
+        <button type="button" id="seisA" class="btn btn-primary" onclick="seisAuto()">Autonomous</button>
+        <button type="button" id="seisR" class="btn btn-primary" onclick="seisReset()">Reset</button>
+    </div>
+
+    <div class="form-group">
+        <label for="beacon">Beacon</label>
+        <br />
+        <label id="current-beac-points" class="current-points">Current Points: 0</label>
+        <input type="hidden" name="beacon" id="beacon" value="" ClientMode="static" />
+        <br />
+        <button type="button" id="beacT" class="btn btn-primary" onclick="beacTeleop()">Teleop</button>
+        <button type="button" id="beacA" class="btn btn-primary" onclick="beacAuto()">Autonomous</button>
+        <button type="button" id="beacR" class="btn btn-primary" onclick="beacReset()">Reset</button>
+    </div>
+
+    <div class="form-group">
+        <label for="auv">AUV</label>
+        <br />
+        <label id="current-auv-points" class="current-points">Current Points: 0</label>
+        <input type="hidden" name="auv" id="auv" value="" ClientMode="static" />
+        <br />
+        <button type="button" id="auvT" class="btn btn-primary" onclick="auvTeleop()">Teleop</button>
+        <button type="button" id="auvA" class="btn btn-primary" onclick="auvAuto()">Autonomous</button>
+        <button type="button" id="auvR" class="btn btn-primary" onclick="auvReset()">Reset</button>
+    </div>
+
+    <div class="form-group">
+        <label for="satellite">Satellite</label>
+        <br />
+        <label id="current-sat-points" class="current-points">Current Points: 0</label>
+        <input type="hidden" name="satellite" id="satellite" value="" ClientMode="static" />
+        <br />
+        <button type="button" id="satT" class="btn btn-primary" onclick="satTeleop()">Teleop</button>
+        <button type="button" id="satA" class="btn btn-primary" onclick="satAuto()">Autonomous</button>
+        <button type="button" id="'satR" class="btn btn-primary" onclick="satReset()">Reset</button>
+    </div>
+
+    <div class="form-group">
+        <label for="imageRecog">Image Recognition</label>
+        <br />
+        <label id="current-image-points" class="current-points">Current Points: 0</label>
+        <br />
+        <label id="tele-images">Images Recognized Teleop: 0</label>
+        <br />
+        <label id="auto-images">Images Recognized Autonomously: 0</label>
+        <input type="hidden" name="imageRecog" id="imageRecog" value="" ClientMode="static" />
+        <br />
+        <button type="button" id="imageT" class="btn btn-primary" onclick="imageTeleop()">Add Teleop</button>
+        <button type="button" id="imageA" class="btn btn-primary" onclick="imageAuto()">Add Autonomous</button>
+        <button type="button" id="SubImageT" class="btn btn-primary" onclick="subImageTeleop()">Subtract Teleop</button>
+        <button type="button" id="SubImageA" class="btn btn-primary" onclick="subImageAuto()">Subtract Autonomous</button>
+        <button type="button" id="imageR" class="btn btn-primary" onclick="imageReset()">Reset</button>
+    </div>
+
+    <div class="form-group">
+        <label for="hydroPod">HydroPods</label>
+        <br />
+        <label id="current-hyd-points" class="current-points">Current Points: 0</label>
+        <br />
+        <label id="tele-hyd">HydroPods Collected Teleop: 0</label>
+        <br />
+        <label id="auto-hyd">HydroPods Collected Autonomously: 0</label>
+        <input type="hidden" name="hydroPod" id="hydroPod" value="" ClientMode="static" />
+        <br />
+        <button type="button" id="hydT" class="btn btn-primary" onclick="hydTeleop()">Add Teleop</button>
+        <button type="button" id="hydA" class="btn btn-primary" onclick="hydAuto()">Add Autonomous</button>
+        <button type="button" id="subHydT" class="btn btn-primary" onclick="subHydTele()">Subtract Teleop</button>
+        <button type="button" id="subHydA" class="btn btn-primary" onclick="subHydAuto()">Subtract Autonomous</button>
+        <button type="button" id="hydR" class="btn btn-primary" onclick="hydReset()">Reset</button>
+    </div>
+
+    <div class="form-group">
+        <label for="nitroPod">NitroPods</label>
+        <br />
+        <label id="current-nit-points" class="current-points">Current Points: 0</label>
+        <br />
+        <label id="tele-nit">NitroPods Collected Teleop: 0</label>
+        <br />
+        <label id="auto-nit">NitroPods Collected Autonomously: 0</label>
+        <input type="hidden" name="nitroPod" id="nitroPod" value="" ClientMode="static" />
+        <br />
+        <button type="button" id="nitT" class="btn btn-primary" onclick="nitTeleop()">Add Teleop</button>
+        <button type="button" id="nitA" class="btn btn-primary" onclick="nitAuto()">Add Autonomous</button>
+        <button type="button" id="subNitT" class="btn btn-primary" onclick="subTeleNit()">Subtract Teleop</button>
+        <button type="button" id="subNitA" class="btn btn-primary" onclick="subAutoNit()">Subtract Autonomous</button>
+        <button type="button" id="nitR" class="btn btn-primary" onclick="nitReset()">Reset</button>
+    </div>
+
+    <div class="form-group">
+        <label for="carbonPod">CarbonPods</label>
+        <br />
+        <label id="current-car-points" class="current-points">Current Points: 0</label>
+        <br />
+        <label id="tele-car">CarbonPods Collected Teleop: 0</label>
+        <br />
+        <label id="auto-car">CarbonPods Collected Autonomously: 0</label>
+        <input type="hidden" name="carbonPod" id="carbonPod" value="" ClientMode="static" />
+        <br />
+        <button type="button" id="carT" class="btn btn-primary" onclick="carTeleop()">Add Teleop</button>
+        <button type="button" id="carA" class="btn btn-primary" onclick="carAuto()">Add Autonomous</button>
+        <button type="button" id="subCarT" class="btn btn-primary" onclick="subCarTele()">Subtract Teleop</button>
+        <button type="button" id="subCarT" class="btn btn-primary" onclick="subCarAuto()">Subtract Autonomous</button>
+        <button type="button" id="carR" class="btn btn-primary" onclick="carReset()">Reset</button>
+    </div>
+    <div class="form-group">
+        <label for="carbonPod">Molecules</label>
+        <br />
+        <label id="current-molecule-points" class="current-points">Current Points: 0</label>
+        <br />
+        <input type="hidden" name="methane" id="methane" value="" ClientMode="static" />
+        <input type="hidden" name="ethane" id="ethane" value="" ClientMode="static" />
+        <input type="hidden" name="butane" id="butane" value="" ClientMode="static" />
+        <input type="hidden" name="pentane" id="pentane" value="" ClientMode="static" />
+        <input type="hidden" name="hexane" id="hexane" value="" ClientMode="static" />
+        <input type="hidden" name="heptane" id="heptane" value="" ClientMode="static" />
+        <input type="hidden" name="octane" id="octane" value="" ClientMode="static" />
+        <input type="hidden" name="nonane" id="nonane" value="" ClientMode="static" />
+        <input type="hidden" name="decane" id="decane" value="" ClientMode="static" />
+        <br />
+        <label id="methaneCount">Methanes Assembled: 0</label>
+        <button type="button" id="methaneAdd" class="btn btn-primary" onclick="addMethane()">Add Methane</button>
+        <button type="button" id="methaneSub" class="btn btn-primary" onclick="subMethane()">Subtract Methane</button>
+        <br />
+
+        <label id="ethaneCount">Ethanes Assembled: 0</label>
+        <button type="button" id="ethaneAdd" class="btn btn-primary" onclick="addEthane()">Add Ethane</button>
+        <button type="button" id="ethaneSub" class="btn btn-primary" onclick="subEthane()">Subtract Ethane</button>
+        <br />
+
+        <label id="butaneCount">Butanes Assembled: 0</label>
+        <button type="button" id="butaneAdd" class="btn btn-primary" onclick="addButane()">Add Butane</button>
+        <button type="button" id="butaneSub" class="btn btn-primary" onclick="subButane()">Subtract Butane</button>
+        <br />
+
+        <label id="pentaneCount">Pentanes Assembled: 0</label>
+        <button type="button" id="pentaneAdd" class="btn btn-primary" onclick="addPentane()">Add Pentane</button>
+        <button type="button" id="pentaneSub" class="btn btn-primary" onclick="subPentane()">Subtract Pentane</button>
+        <br />
+
+        <label id="hexaneCount">Hexanes Assembled: 0</label>
+        <button type="button" id="hexaneAdd" class="btn btn-primary" onclick="addHexane()">Add Hexane</button>
+        <button type="button" id="hexaneSub" class="btn btn-primary" onclick="subHexane()">Subtract Hexane</button>
+        <br />
+
+        <label id="heptaneCount">Heptanes Assembled: 0</label>
+        <button type="button" id="heptaneAdd" class="btn btn-primary" onclick="addHeptane()">Add Heptane</button>
+        <button type="button" id="heptaneSub" class="btn btn-primary" onclick="subHeptane()">Subtract Heptane</button>
+        <br />
+
+        <label id="octaneCount">Octanes Assembled: 0</label>
+        <button type="button" id="octaneAdd" class="btn btn-primary" onclick="addOctane()">Add Octane</button>
+        <button type="button" id="octaneSub" class="btn btn-primary" onclick="subOctane()">Subtract Octane</button>
+        <br />
+
+        <label id="nonaneCount">Nonanes Assembled: 0</label>
+        <button type="button" id="nonaneAdd" class="btn btn-primary" onclick="addNonane()">Add Nonane</button>
+        <button type="button" id="nonaneSub" class="btn btn-primary" onclick="subNonane()">Subtract Nonane</button>
+        <br />
+
+        <label id="decaneCount">Decanes Assembled: 0</label>
+        <button type="button" id="decaneAdd" class="btn btn-primary" onclick="addDecane()">Add Decane</button>
+        <button type="button" id="butaneSub" class="btn btn-primary" onclick="subDecane()">Subtract Decane</button>
+        <br />
+    </div>
+    <div class="form-group">
+        <label for="end-game">Hanging Bar</label>
+        <br />
+        <label id="current-hang-points" class="current-points">Current Points: 0</label>
+        <input type="hidden" name="end-game" id="end-game" value="" ClientMode="static" />
+        <br />
+        <button type="button" id="endT" class="btn btn-primary" onclick="endTeleop()">Add Points</button>
+        <button type="button" id="endR" class="btn btn-primary" onclick="endReset()">Reset</button>
+    </div>
+    <label id="totalPoints">Total Points: 0</label>
+    <input type="hidden" name="total" id="total" value=0 ClientMode="static" />
+
+</form>
+<script>
+    let seisTelePoint = 30;
+    let seisAutoPoint = 50;
+
+    let auvTelePoint = 15;
+    let auvAutoPoint = 30;
+
+    let beacTelePoint = 10;
+    let beacAutoPoint = 20;
+
+    let imageTelePoint = 20;
+    let imageAutoPoint = 30;
+    let imageMax = 3;
+    let imagesScored = 0;
+    let autoImagesScored = 0;
+    let teleImagesScored = 0;
+
+    let satTelePoint = 15;
+    let satAutoPoint = 30;
+
+    let hydTelePoint = 5;
+    let hydAutoPoint = 10;
+    let hydPodsTotal = 0;
+    let hydPodsAuto = 0;
+    let hydPodsTele = 0;
+
+    let nitTelePoint = 5;
+    let nitAutoPoint = 10;
+    let nitPodsTotal = 0;
+    let nitPodsTele = 0;
+    let nitPodsAuto = 0;
+
+    let carTelePoint = 10;
+    let carAutoPoint = 20;
+    let carPodsTotal = 0;
+    let carPodsTele = 0
+    let carPodsAuto = 0;
+
+    let endGamePoint = 75;
+    let methane = 56.25;
+    let ethane = 100;
+    let propane = 143.75;
+    let butane = 187.50;
+    let pentane = 231.25;
+    let hexane = 275;
+    let heptane = 318.75;
+    let octane = 362.50;
+    let nonane = 406.25;
+    let decane = 450;
+
+    let methaneCollected = 0;
+    let ethaneCollected = 0;
+    let butaneCollected = 0;
+    let pentaneCollected = 0;
+    let hexaneCollected = 0;
+    let heptaneCollected = 0;
+    let octaneCollected = 0;
+    let nonaneCollected = 0;
+    let decaneCollected = 0;
+
+    let currentMethanePoints = 0;
+    let currentEthanePoints = 0;
+    let currentButanePoints = 0;
+    let currentPentanePoints = 0;
+    let currentHexanePoints = 0;
+    let currentHeptanePoints = 0;
+    let currentOctanePoints = 0;
+    let currentNonanePoints = 0;
+    let currentDecanePoints = 0;
+    let currentMoleculePoints = 0;
+
+    let currentImagePoints = 0;
+    let currentHydroPoints = 0;
+    let currentNitroPoints = 0;
+    let currentCarbonPoints = 0;
+
+    let total = 0;
+
+    function seisTeleop() {
+        let x = document.getElementById('siesmometer');
+        if (x.value == 0) {
+            total += seisTelePoint;
+        } else if (x.value == seisAutoPoint) {
+            total -= seisAutoPoint;
+            total += seisTelePoint;
+        }
+
+        x.value = seisTelePoint;
+        //let y = document.getElementById('total').value
+        document.getElementById('current-seis-points').innerHTML = 'Current Points: ' + seisTelePoint;
+        document.getElementById('total').value = total;
+        document.getElementById('totalPoints').innerHTML = 'Total Points: ' + total;
+        document.getElementById('scoreTeams').submit();
+        //console.log(x.value);
+        //return false;
+        //seisPoints = 10;
+        //document.getElementById('test').innerHTML = document.getElementById('<%=seis.ClientID %>').value;
+        //console.log(document.getElementById('seis').value);
+    }
+
+    function seisAuto() {
+        let x = document.getElementById('siesmometer');
+        if (x.value == 0) {
+            total += seisAutoPoint;
+        } else if (x.value == seisTelePoint) {
+            total -= seisTelePoint;
+            total += seisAutoPoint;
+        }
+        x.value = seisAutoPoint;
+        document.getElementById('current-seis-points').innerHTML = 'Current Points: ' + seisAutoPoint;
+        //total += seisAutoPoint;
+        document.getElementById('total').value = total;
+        document.getElementById('totalPoints').innerHTML = 'Total Points: ' + total;
+        document.getElementById('scoreTeams').submit();
+    }
+
+    function seisReset() {
+        let x = document.getElementById('siesmometer');
+        total -= x.value;
+        x.value = 0;
+        document.getElementById('current-seis-points').innerHTML = 'Current Points: ' + x.value;
+        document.getElementById('total').value = total;
+        document.getElementById('totalPoints').innerHTML = 'Total Points: ' + total;
+        document.getElementById('scoreTeams').submit();
+    }
+
+    function beacTeleop() {
+        let x = document.getElementById('beacon');
+        if (x.value == 0) {
+            total += beacTelePoint;
+        } else if (x.value == beacAutoPoint) {
+            total -= beacAutoPoint;
+            total += beacTelePoint;
+        }
+        x.value = beacTelePoint;
+        document.getElementById('current-beac-points').innerHTML = 'Current Points: ' + beacTelePoint;
+        //total += beacTelePoint;
+        document.getElementById('total').value = total;
+        document.getElementById('totalPoints').innerHTML = 'Total Points: ' + total;
+        document.getElementById('scoreTeams').submit();
+    }
+
+    function beacAuto() {
+        let x = document.getElementById('beacon');
+        if (x.value == 0) {
+            total += beacAutoPoint;
+        } else if (x.value == beacTelePoint) {
+            total -= beacTelePoint;
+            total += beacAutoPoint;
+        }
+        x.value = beacAutoPoint;
+        document.getElementById('current-beac-points').innerHTML = 'Current Points: ' + beacAutoPoint;
+        //total += beacAutoPoint;
+        document.getElementById('total').value = total;
+        document.getElementById('totalPoints').innerHTML = 'Total Points: ' + total;
+        document.getElementById('scoreTeams').submit();
+    }
+
+    function beacReset() {
+        let x = document.getElementById('beacon');
+        total -= x.value;
+        x.value = 0;
+        document.getElementById('current-beac-points').innerHTML = 'Current Points: ' + x.value;
+        document.getElementById('total').value = total;
+        document.getElementById('totalPoints').innerHTML = 'Total Points: ' + total;
+        document.getElementById('scoreTeams').submit();
+    }
+
+    function auvTeleop() {
+        let x = document.getElementById('auv');
+        if (x.value == 0) {
+            total += auvTelePoint;
+        } else if (x.value == auvAutoPoint) {
+            total -= auvAutoPoint;
+            total += auvTelePoint;
+        }
+        x.value = auvTelePoint;
+        document.getElementById('current-auv-points').innerHTML = 'Current Points: ' + auvTelePoint;
+        //total += auvTelePoint;
+        document.getElementById('total').value = total;
+        document.getElementById('totalPoints').innerHTML = 'Total Points: ' + total;
+        document.getElementById('scoreTeams').submit();
+    }
+
+    function auvAuto() {
+        let x = document.getElementById('auv');
+        if (x.value == 0) {
+            total += auvAutoPoint;
+        } else if (x.value == auvTelePoint) {
+            total -= auvTelePoint;
+            total += auvAutoPoint;
+        }
+        x.value = auvAutoPoint;
+        document.getElementById('current-auv-points').innerHTML = 'Current Points: ' + auvAutoPoint;
+        //total += auvAutoPoint;
+        document.getElementById('total').value = total;
+        document.getElementById('totalPoints').innerHTML = 'Total Points: ' + total;
+        document.getElementById('scoreTeams').submit();
+    }
+
+    function auvReset() {
+        let x = document.getElementById('auv');
+        total -= x.value;
+        x.value = 0;
+        document.getElementById('current-auv-points').innerHTML = 'Current Points: ' + x.value;
+        document.getElementById('total').value = total;
+        document.getElementById('totalPoints').innerHTML = 'Total Points: ' + total;
+        document.getElementById('scoreTeams').submit();
+    }
+
+    function imageTeleop() {
+        if (imagesScored < 3) {
+            teleImagesScored++;
+            let x = document.getElementById('imageRecog');
+            currentImagePoints += imageTelePoint;
+            x.value = currentImagePoints;
+            imagesScored++;
+            document.getElementById('current-image-points').innerHTML = 'Current Points: ' + currentImagePoints;
+            document.getElementById('tele-images').innerHTML = 'Images Recognized Teleop: ' + teleImagesScored;
+            total += imageTelePoint;
+            document.getElementById('total').value = total;
+            document.getElementById('totalPoints').innerHTML = 'Total Points: ' + total;
+            document.getElementById('scoreTeams').submit();
+        }
+
+    }
+
+    function imageAuto() {
+        if (imagesScored < 3) {
+            autoImagesScored++;
+            let x = document.getElementById('imageRecog');
+            currentImagePoints += imageAutoPoint;
+            x.value = currentImagePoints;
+            imagesScored++;
+            document.getElementById('current-image-points').innerHTML = 'Current Points: ' + currentImagePoints;
+            document.getElementById('auto-images').innerHTML = 'Images Recognized Autonomously: ' + autoImagesScored;
+            total += imageAutoPoint;
+            document.getElementById('total').value = total;
+            document.getElementById('totalPoints').innerHTML = 'Total Points: ' + total;
+            document.getElementById('scoreTeams').submit();
+        }
+    }
+
+    function imageReset() {
+        autoImagesScored = 0;
+        teleImagesScored = 0;
+        imagesScored = 0;
+        let x = document.getElementById('imageRecog');
+        currentImagePoints = 0;
+        total -= x.value;
+        x.value = currentImagePoints;
+        document.getElementById('current-image-points').innerHTML = 'Current Points: ' + x.value;
+        document.getElementById('tele-images').innerHTML = 'Images Recognized Teleop: ' + teleImagesScored;
+        document.getElementById('auto-images').innerHTML = 'Images Recognized Autonomously: ' + autoImagesScored;
+        document.getElementById('total').value = total;
+        document.getElementById('totalPoints').innerHTML = 'Total Points: ' + total;
+        document.getElementById('scoreTeams').submit();
+    }
+
+    function subImageAuto() {
+        if (autoImagesScored > 0) {
+            autoImagesScored--;
+            imagesScored--;
+            let x = document.getElementById('imageRecog');
+            currentImagePoints -= imageAutoPoint;
+            x.value = currentImagePoints;
+            document.getElementById('current-image-points').innerHTML = 'Current Points: ' + currentImagePoints;
+            document.getElementById('auto-images').innerHTML = 'Images Recognized Autonomously: ' + autoImagesScored;
+            total -= imageAutoPoint;
+            document.getElementById('total').value = total;
+            document.getElementById('totalPoints').innerHTML = 'Total Points: ' + total;
+            document.getElementById('scoreTeams').submit();
+        }
+    }
+
+    function subImageTeleop() {
+        if (teleImagesScored > 0) {
+            teleImagesScored--;
+            imagesScored--;
+            let x = document.getElementById('imageRecog');
+            currentImagePoints -= imageTelePoint;
+            x.value = currentImagePoints;
+            document.getElementById('current-image-points').innerHTML = 'Current Points: ' + currentImagePoints;
+            document.getElementById('tele-images').innerHTML = 'Images Recognized Teleop: ' + teleImagesScored;
+            total -= imageTelePoint;
+            document.getElementById('total').value = total;
+            document.getElementById('totalPoints').innerHTML = 'Total Points: ' + total;
+            document.getElementById('scoreTeams').submit();
+        }
+    }
+
+    function satTeleop() {
+        let x = document.getElementById('satellite');
+        if (x.value == 0) {
+            total += satTelePoint;
+        } else if (x.value == satAutoPoint) {
+            total -= satAutoPoint;
+            total += satTelePoint;
+        }
+        x.value = satTelePoint;
+        document.getElementById('current-sat-points').innerHTML = 'Current Points: ' + satTelePoint;
+        //total += satTelePoint;
+        document.getElementById('total').value = total;
+        document.getElementById('totalPoints').innerHTML = 'Total Points: ' + total;
+        document.getElementById('scoreTeams').submit();
+    }
+
+    function satAuto() {
+        let x = document.getElementById('satellite');
+        if (x.value == 0) {
+            total += satAutoPoint;
+        } else if (x.value == satTelePoint) {
+            total -= satTelePoint;
+            total += satAutoPoint;
+        }
+        x.value = satAutoPoint;
+        document.getElementById('current-sat-points').innerHTML = 'Current Points: ' + satAutoPoint;
+        //total += satAutoPoint;
+        document.getElementById('total').value = total;
+        document.getElementById('totalPoints').innerHTML = 'Total Points: ' + total;
+        document.getElementById('scoreTeams').submit();
+    }
+
+    function satReset() {
+        let x = document.getElementById('satellite');
+        total -= x.value;
+        x.value = 0;
+        document.getElementById('current-sat-points').innerHTML = 'Current Points: ' + x.value;
+        document.getElementById('total').value = total;
+        document.getElementById('totalPoints').innerHTML = 'Total Points: ' + total;
+        document.getElementById('scoreTeams').submit();
+    }
+
+    function hydTeleop() {
+        hydPodsTotal++;
+        hydPodsTele++;
+        let x = document.getElementById('hydroPod');
+        currentHydroPoints += hydTelePoint;
+        x.value = currentHydroPoints;
+        document.getElementById('current-hyd-points').innerHTML = 'Current Points: ' + currentHydroPoints;
+        document.getElementById('tele-hyd').innerHTML = 'HydroPods Collected Teleop: ' + hydPodsTele;
+        total += hydTelePoint;
+        document.getElementById('total').value = total;
+        document.getElementById('totalPoints').innerHTML = 'Total Points: ' + total;
+        document.getElementById('scoreTeams').submit();
+    }
+
+    function hydAuto() {
+        hydPodsTotal++;
+        hydPodsAuto++;
+        let x = document.getElementById('hydroPod');
+        currentHydroPoints += hydAutoPoint;
+        x.value = currentHydroPoints;
+        document.getElementById('current-hyd-points').innerHTML = 'Current Points: ' + currentHydroPoints;
+        document.getElementById('auto-hyd').innerHTML = 'HydroPods Collected Autonomously: ' + hydPodsAuto;
+        total += hydAutoPoint;
+        document.getElementById('total').value = total;
+        document.getElementById('totalPoints').innerHTML = 'Total Points: ' + total;
+        document.getElementById('scoreTeams').submit();
+    }
+
+    function hydReset() {
+        hydPodsTotal = 0;
+        hydPodsTele = 0;
+        hydPodsAuto = 0;
+        let x = document.getElementById('hydroPod');
+        currentHydroPoints = 0;
+        total -= x.value;
+        x.value = currentHydroPoints;
+        document.getElementById('current-hyd-points').innerHTML = 'Current Points: ' + x.value;
+        document.getElementById('auto-hyd').innerHTML = 'HydroPods Collected Autonomously: ' + hydPodsAuto;
+        document.getElementById('tele-hyd').innerHTML = 'HydroPods Collected Teleop: ' + hydPodsTele;
+        document.getElementById('total').value = total;
+        document.getElementById('totalPoints').innerHTML = 'Total Points: ' + total;
+        document.getElementById('scoreTeams').submit();
+    }
+
+    function subHydTele() {
+        if (hydPodsTele > 0) {
+            hydPodsTele--;
+            hydPodsTotal--;
+            currentHydroPoints -= hydTelePoint;
+            let x = document.getElementById('hydroPod');
+            x.value = currentHydroPoints;
+            document.getElementById('current-hyd-points').innerHTML = 'Current Points: ' + currentHydroPoints;
+            document.getElementById('tele-hyd').innerHTML = 'HydroPods Collected Teleop: ' + hydPodsTele;
+            total -= hydTelePoint;
+            document.getElementById('total').value = total;
+            document.getElementById('totalPoints').innerHTML = 'Total Points: ' + total;
+            document.getElementById('scoreTeams').submit();
+        }
+    }
+
+    function subHydAuto() {
+        if (hydPodsAuto > 0) {
+            hydPodsAuto--;
+            hydPodsTotal--;
+            currentHydroPoints -= hydAutoPoint;
+            let x = document.getElementById('hydroPod');
+            x.value = currentHydroPoints;
+            document.getElementById('current-hyd-points').innerHTML = 'Current Points: ' + currentHydroPoints;
+            document.getElementById('auto-hyd').innerHTML = 'HydroPods Collected Autonomously: ' + hydPodsAuto;
+            total -= hydAutoPoint;
+            document.getElementById('total').value = total;
+            document.getElementById('totalPoints').innerHTML = 'Total Points: ' + total;
+            document.getElementById('scoreTeams').submit();
+        }
+    }
+
+    function nitTeleop() {
+        nitPodsTotal++;
+        nitPodsTele++;
+        let x = document.getElementById('nitroPod');
+        currentNitroPoints += nitTelePoint;
+        x.value = currentNitroPoints;
+        document.getElementById('current-nit-points').innerHTML = 'Current Points: ' + currentNitroPoints;
+        document.getElementById('tele-nit').innerHTML = 'NitroPods Collected Teleop: ' + nitPodsTele;
+        total += nitTelePoint;
+        document.getElementById('total').value = total;
+        document.getElementById('totalPoints').innerHTML = 'Total Points: ' + total;
+        document.getElementById('scoreTeams').submit();
+    }
+
+    function nitAuto() {
+        nitPodsTotal++;
+        nitPodsAuto++;
+        let x = document.getElementById('nitroPod');
+        currentNitroPoints += nitAutoPoint;
+        x.value = currentNitroPoints;
+        document.getElementById('current-nit-points').innerHTML = 'Current Points: ' + currentNitroPoints;
+        document.getElementById('auto-nit').innerHTML = 'NitroPods Collected Autonomously: ' + nitPodsAuto;
+        total += nitAutoPoint;
+        document.getElementById('total').value = total;
+        document.getElementById('totalPoints').innerHTML = 'Total Points: ' + total;
+        document.getElementById('scoreTeams').submit();
+    }
+
+    function nitReset() {
+        nitPodsAuto = 0;
+        nitPodsTele = 0;
+        nitPodsTotal = 0;
+        let x = document.getElementById('nitroPod');
+        currentNitroPoints = 0;
+        total -= x.value;
+        x.value = currentNitroPoints;
+        document.getElementById('current-nit-points').innerHTML = 'Current Points: ' + x.value;
+        document.getElementById('auto-nit').innerHTML = 'NitroPods Collected Autonomously: ' + nitPodsAuto;
+        document.getElementById('tele-nit').innerHTML = 'NitroPods Collected Teleop: ' + nitPodsTele;
+        document.getElementById('total').value = total;
+        document.getElementById('totalPoints').innerHTML = 'Total Points: ' + total;
+        document.getElementById('scoreTeams').submit();
+    }
+
+    function subTeleNit() {
+        if (nitPodsTele > 0) {
+            nitPodsTele--;
+            nitPodsTotal--;
+            currentNitroPoints -= nitTelePoint;
+            let x = document.getElementById('nitroPod');
+            x.value = currentNitroPoints;
+            document.getElementById('current-nit-points').innerHTML = 'Current Points: ' + currentNitroPoints;
+            document.getElementById('tele-nit').innerHTML = 'NitroPods Collected Teleop: ' + nitPodsTele;
+            total -= nitTelePoint;
+            document.getElementById('total').value = total;
+            document.getElementById('totalPoints').innerHTML = 'Total Points: ' + total;
+            document.getElementById('scoreTeams').submit();
+        }
+    }
+
+    function subAutoNit() {
+        if (nitPodsAuto > 0) {
+            nitPodsAuto--;
+            nitPodsTotal--;
+            currentNitroPoints -= nitAutoPoint;
+            let x = document.getElementById('nitroPod');
+            x.value = currentNitroPoints;
+            document.getElementById('current-nit-points').innerHTML = 'Current Points: ' + currentNitroPoints;
+            document.getElementById('auto-nit').innerHTML = 'NitroPods Collected Autonomously: ' + nitPodsAuto;
+            total -= nitAutoPoint;
+            document.getElementById('total').value = total;
+            document.getElementById('totalPoints').innerHTML = 'Total Points: ' + total;
+            document.getElementById('scoreTeams').submit();
+        }
+    }
+
+    function endTeleop() {
+        //carPodsTotal++;
+        //carPodsTele++;
+        let x = document.getElementById('end-game');
+        //currentCarbonPoints += carTelePoint;
+        x.value = endGamePoint;
+        document.getElementById('current-hang-points').innerHTML = 'Current Points: ' + endGamePoint;
+        //document.getElementById('tele-car').innerHTML = 'CarbonPods Collected Teleop: ' + carPodsTele;
+        total += endGamePoint;
+        document.getElementById('total').value = total;
+        document.getElementById('totalPoints').innerHTML = 'Total Points: ' + total;
+        document.getElementById('scoreTeams').submit();
+    }
+
+    function endReset() {
+        //carPodsAuto = 0;
+        //carPodsTele = 0;
+        //carPodsTotal = 0;
+        let x = document.getElementById('end-game');
+        //currentCarbonPoints = 0;
+        total -= x.value;
+        x.value = 0;
+        document.getElementById('current-hang-points').innerHTML = 'Current Points: ' + x.value;
+        //document.getElementById('auto-car').innerHTML = 'CarbonPods Collected Autonomously: ' + carPodsAuto;
+        //document.getElementById('tele-car').innerHTML = 'CarbonPods Collected Teleop: ' + carPodsTele;
+        document.getElementById('total').value = total;
+        document.getElementById('totalPoints').innerHTML = 'Total Points: ' + total;
+        document.getElementById('scoreTeams').submit();
+    }
+
+
+    function carTeleop() {
+        carPodsTotal++;
+        carPodsTele++;
+        let x = document.getElementById('carbonPod');
+        currentCarbonPoints += carTelePoint;
+        x.value = currentCarbonPoints;
+        document.getElementById('current-car-points').innerHTML = 'Current Points: ' + currentCarbonPoints;
+        document.getElementById('tele-car').innerHTML = 'CarbonPods Collected Teleop: ' + carPodsTele;
+        total += carTelePoint;
+        document.getElementById('total').value = total;
+        document.getElementById('totalPoints').innerHTML = 'Total Points: ' + total;
+        document.getElementById('scoreTeams').submit();
+    }
+
+    function carAuto() {
+        carPodsTotal++;
+        carPodsAuto++;
+        let x = document.getElementById('carbonPod');
+        currentCarbonPoints += carAutoPoint;
+        x.value = currentCarbonPoints;
+        document.getElementById('current-car-points').innerHTML = 'Current Points: ' + currentCarbonPoints;
+        document.getElementById('auto-car').innerHTML = 'CarbonPods Collected Autonomously: ' + carPodsAuto;
+        total += carAutoPoint;
+        document.getElementById('total').value = total;
+        document.getElementById('totalPoints').innerHTML = 'Total Points: ' + total;
+        document.getElementById('scoreTeams').submit();
+    }
+
+    function carReset() {
+        carPodsAuto = 0;
+        carPodsTele = 0;
+        carPodsTotal = 0;
+        let x = document.getElementById('carbonPod');
+        currentCarbonPoints = 0;
+        total -= x.value;
+        x.value = currentCarbonPoints;
+        document.getElementById('current-car-points').innerHTML = 'Current Points: ' + x.value;
+        document.getElementById('auto-car').innerHTML = 'CarbonPods Collected Autonomously: ' + carPodsAuto;
+        document.getElementById('tele-car').innerHTML = 'CarbonPods Collected Teleop: ' + carPodsTele;
+        document.getElementById('total').value = total;
+        document.getElementById('totalPoints').innerHTML = 'Total Points: ' + total;
+        document.getElementById('scoreTeams').submit();
+    }
+
+    function subCarTele() {
+        if (carPodsTele > 0) {
+            carPodsTele--;
+            carPodsTotal--;
+            currentCarbonPoints -= carTelePoint;
+            let x = document.getElementById('carbonPod');
+            x.value = currentCarbonPoints;
+            document.getElementById('current-car-points').innerHTML = 'Current Points: ' + currentCarbonPoints;
+            document.getElementById('tele-car').innerHTML = 'CarbonPods Collected Teleop: ' + carPodsTele;
+            total -= carTelePoint;
+            document.getElementById('total').value = total;
+            document.getElementById('totalPoints').innerHTML = 'Total Points: ' + total;
+            document.getElementById('scoreTeams').submit();
+        }
+    }
+
+    function subCarAuto() {
+        if (carPodsAuto > 0) {
+            carPodsAuto--;
+            carPodsTotal--;
+            currentCarbonPoints -= carAutoPoint;
+            let x = document.getElementById('carbonPod');
+            x.value = currentCarbonPoints;
+            document.getElementById('current-car-points').innerHTML = 'Current Points: ' + currentCarbonPoints;
+            document.getElementById('auto-car').innerHTML = 'CarbonPods Collected Autonomously: ' + carPodsAuto;
+            total -= carAutoPoint;
+            document.getElementById('total').value = total;
+            document.getElementById('totalPoints').innerHTML = 'Total Points: ' + total;
+            document.getElementById('scoreTeams').submit();
+        }
+    }
+
+    function addMethane() {
+        //nitPodsTotal++;
+        //nitPodsTele++;
+        methaneCollected++;
+        currentMoleculePoints += methane;
+        let x = document.getElementById('methane');
+        currentMethanePoints += methane;
+        x.value = currentMethanePoints;
+        document.getElementById('current-molecule-points').innerHTML = 'Current Points: ' + currentMoleculePoints;
+        document.getElementById('methaneCount').innerHTML = 'Methanes Assembled: ' + methaneCollected;
+        total += methane;
+        document.getElementById('total').value = total;
+        document.getElementById('totalPoints').innerHTML = 'Total Points: ' + total;
+        document.getElementById('scoreTeams').submit();
+    }
+
+    function subMethane() {
+        if (currentMethanePoints > 0) {
+            methaneCollected--;
+            currentMoleculePoints -= methane;
+            let x = document.getElementById('methane');
+            currentMethanePoints -= methane;
+            x.value = currentMethanePoints;
+            //x.value = currentMethanePoints;
+            document.getElementById('current-molecule-points').innerHTML = 'Current Points: ' + currentMoleculePoints;
+            document.getElementById('methaneCount').innerHTML = 'Methanes Assembled: ' + methaneCollected;
+            total -= methane;
+            document.getElementById('total').value = total;
+            document.getElementById('totalPoints').innerHTML = 'Total Points: ' + total;
+            document.getElementById('scoreTeams').submit();
+        }
+    }
+
+    function addEthane() {
+        //nitPodsTotal++;
+        //nitPodsTele++;
+        ethaneCollected++;
+        currentMoleculePoints += ethane;
+        let x = document.getElementById('ethane');
+        currentEthanePoints += ethane;
+        x.value = currentEthanePoints;
+        document.getElementById('current-molecule-points').innerHTML = 'Current Points: ' + currentMoleculePoints;
+        document.getElementById('ethaneCount').innerHTML = 'Ethanes Assembled: ' + ethaneCollected;
+        total += ethane;
+        document.getElementById('total').value = total;
+        document.getElementById('totalPoints').innerHTML = 'Total Points: ' + total;
+        document.getElementById('scoreTeams').submit();
+    }
+
+    function subEthane() {
+        if (currentEthanePoints > 0) {
+            ethaneCollected--;
+            currentMoleculePoints -= ethane;
+            let x = document.getElementById('ethane');
+            currentEthanePoints -= ethane;
+            x.value = currentEthanePoints;
+            //x.value = currentMethanePoints;
+            document.getElementById('current-molecule-points').innerHTML = 'Current Points: ' + currentMoleculePoints;
+            document.getElementById('ethaneCount').innerHTML = 'Ethanes Assembled: ' + ethaneCollected;
+            total -= ethane;
+            document.getElementById('total').value = total;
+            document.getElementById('totalPoints').innerHTML = 'Total Points: ' + total;
+            document.getElementById('scoreTeams').submit();
+        }
+    }
+    function addButane() {
+        //nitPodsTotal++;
+        //nitPodsTele++;
+        butaneCollected++;
+        currentMoleculePoints += butane;
+        let x = document.getElementById('butane');
+        currentButanePoints += butane;
+        x.value = currentButanePoints;
+        document.getElementById('current-molecule-points').innerHTML = 'Current Points: ' + currentMoleculePoints;
+        document.getElementById('butaneCount').innerHTML = 'Butanes Assembled: ' + butaneCollected;
+        total += butane;
+        document.getElementById('total').value = total;
+        document.getElementById('totalPoints').innerHTML = 'Total Points: ' + total;
+        document.getElementById('scoreTeams').submit();
+    }
+
+    function subButane() {
+        if (currentButanePoints > 0) {
+            butaneCollected--;
+            currentMoleculePoints -= butane;
+            let x = document.getElementById('butane');
+            currentButanePoints -= butane;
+            x.value = currentButanePoints;
+            //x.value = currentMethanePoints;
+            document.getElementById('current-molecule-points').innerHTML = 'Current Points: ' + currentMoleculePoints;
+            document.getElementById('butaneCount').innerHTML = 'Butanes Assembled: ' + butaneCollected;
+            total -= butane;
+            document.getElementById('total').value = total;
+            document.getElementById('totalPoints').innerHTML = 'Total Points: ' + total;
+            document.getElementById('scoreTeams').submit();
+        }
+    }
+    function addPentane() {
+        //nitPodsTotal++;
+        //nitPodsTele++;
+        pentaneCollected++;
+        currentMoleculePoints += pentane;
+        let x = document.getElementById('pentane');
+        currentPentanePoints += pentane;
+        x.value = currentPentanePoints;
+        document.getElementById('current-molecule-points').innerHTML = 'Current Points: ' + currentMoleculePoints;
+        document.getElementById('pentaneCount').innerHTML = 'Pentanes Assembled: ' + pentaneCollected;
+        total += pentane;
+        document.getElementById('total').value = total;
+        document.getElementById('totalPoints').innerHTML = 'Total Points: ' + total;
+        document.getElementById('scoreTeams').submit();
+    }
+
+    function subPentane() {
+        if (currentPentanePoints > 0) {
+            pentaneCollected--;
+            currentMoleculePoints -= pentane;
+            let x = document.getElementById('pentane');
+            currentPentanePoints -= pentane;
+            x.value = currentPentanePoints;
+            //x.value = currentMethanePoints;
+            document.getElementById('current-molecule-points').innerHTML = 'Current Points: ' + currentMoleculePoints;
+            document.getElementById('pentaneCount').innerHTML = 'Pentanes Assembled: ' + pentaneCollected;
+            total -= pentane;
+            document.getElementById('total').value = total;
+            document.getElementById('totalPoints').innerHTML = 'Total Points: ' + total;
+            document.getElementById('scoreTeams').submit();
+        }
+    }
+    function addHexane() {
+        //nitPodsTotal++;
+        //nitPodsTele++;
+        hexaneCollected++;
+        currentMoleculePoints += hexane;
+        let x = document.getElementById('hexane');
+        currentHexanePoints += hexane;
+        x.value = currentHexanePoints;
+        document.getElementById('current-molecule-points').innerHTML = 'Current Points: ' + currentMoleculePoints;
+        document.getElementById('hexaneCount').innerHTML = 'Hexanes Assembled: ' + hexaneCollected;
+        total += hexane;
+        document.getElementById('total').value = total;
+        document.getElementById('totalPoints').innerHTML = 'Total Points: ' + total;
+        document.getElementById('scoreTeams').submit();
+    }
+
+    function subHexane() {
+        if (currentHexanePoints > 0) {
+            hexaneCollected--;
+            currentMoleculePoints -= hexane;
+            let x = document.getElementById('hexane');
+            currentHexanePoints -= hexane;
+            x.value = currentHexanePoints;
+            //x.value = currentMethanePoints;
+            document.getElementById('current-molecule-points').innerHTML = 'Current Points: ' + currentMoleculePoints;
+            document.getElementById('hexaneCount').innerHTML = 'Hexanes Assembled: ' + hexaneCollected;
+            total -= hexane;
+            document.getElementById('total').value = total;
+            document.getElementById('totalPoints').innerHTML = 'Total Points: ' + total;
+            document.getElementById('scoreTeams').submit();
+        }
+    }
+    function addHeptane() {
+        //nitPodsTotal++;
+        //nitPodsTele++;
+        heptaneCollected++;
+        currentMoleculePoints += heptane;
+        let x = document.getElementById('heptane');
+        currentHeptanePoints += heptane;
+        x.value = currentHeptanePoints;
+        document.getElementById('current-molecule-points').innerHTML = 'Current Points: ' + currentMoleculePoints;
+        document.getElementById('heptaneCount').innerHTML = 'Heptanes Assembled: ' + heptaneCollected;
+        total += heptane;
+        document.getElementById('total').value = total;
+        document.getElementById('totalPoints').innerHTML = 'Total Points: ' + total;
+        document.getElementById('scoreTeams').submit();
+    }
+
+    function subHeptane() {
+        if (currentHeptanePoints > 0) {
+            heptaneCollected--;
+            currentMoleculePoints -= heptane;
+            let x = document.getElementById('heptane');
+            currentHeptanePoints -= heptane;
+            x.value = currentHeptanePoints;
+            //x.value = currentMethanePoints;
+            document.getElementById('current-molecule-points').innerHTML = 'Current Points: ' + currentMoleculePoints;
+            document.getElementById('heptaneCount').innerHTML = 'Heptanes Assembled: ' + heptaneCollected;
+            total -= heptane;
+            document.getElementById('total').value = total;
+            document.getElementById('totalPoints').innerHTML = 'Total Points: ' + total;
+            document.getElementById('scoreTeams').submit();
+        }
+    }
+    function addOctane() {
+        //nitPodsTotal++;
+        //nitPodsTele++;
+        octaneCollected++;
+        currentMoleculePoints += octane;
+        let x = document.getElementById('octane');
+        currentOctanePoints += octane;
+        x.value = currentOctanePoints;
+        document.getElementById('current-molecule-points').innerHTML = 'Current Points: ' + currentMoleculePoints;
+        document.getElementById('octaneCount').innerHTML = 'Octanes Assembled: ' + octaneCollected;
+        total += octane;
+        document.getElementById('total').value = total;
+        document.getElementById('totalPoints').innerHTML = 'Total Points: ' + total;
+        document.getElementById('scoreTeams').submit();
+    }
+
+    function subOctane() {
+        if (currentOctanePoints > 0) {
+            octaneCollected--;
+            currentMoleculePoints -= octane;
+            let x = document.getElementById('octane');
+            currentOctanePoints -= octane;
+            x.value = currentOctanePoints;
+            //x.value = currentMethanePoints;
+            document.getElementById('current-molecule-points').innerHTML = 'Current Points: ' + currentMoleculePoints;
+            document.getElementById('octaneCount').innerHTML = 'Octanes Assembled: ' + octaneCollected;
+            total -= octane;
+            document.getElementById('total').value = total;
+            document.getElementById('totalPoints').innerHTML = 'Total Points: ' + total;
+            document.getElementById('scoreTeams').submit();
+        }
+    }
+    function addNonane() {
+        //nitPodsTotal++;
+        //nitPodsTele++;
+        nonaneCollected++;
+        currentMoleculePoints += nonane;
+        let x = document.getElementById('nonane');
+        currentNonanePoints += nonane;
+        x.value = currentNonanePoints;
+        document.getElementById('current-molecule-points').innerHTML = 'Current Points: ' + currentMoleculePoints;
+        document.getElementById('nonaneCount').innerHTML = 'Nonanes Assembled: ' + nonaneCollected;
+        total += nonane;
+        document.getElementById('total').value = total;
+        document.getElementById('totalPoints').innerHTML = 'Total Points: ' + total;
+        document.getElementById('scoreTeams').submit();
+    }
+
+    function subNonane() {
+        if (currentNonanePoints > 0) {
+            nonaneCollected--;
+            currentMoleculePoints -= nonane;
+            let x = document.getElementById('nonane');
+            currentNonanePoints -= nonane;
+            x.value = currentNonanePoints;
+            //x.value = currentMethanePoints;
+            document.getElementById('current-molecule-points').innerHTML = 'Current Points: ' + currentMoleculePoints;
+            document.getElementById('nonaneCount').innerHTML = 'Nonanes Assembled: ' + nonaneCollected;
+            total -= nonane;
+            document.getElementById('total').value = total;
+            document.getElementById('totalPoints').innerHTML = 'Total Points: ' + total;
+            document.getElementById('scoreTeams').submit();
+        }
+    }
+    function addDecane() {
+        //nitPodsTotal++;
+        //nitPodsTele++;
+        decaneCollected++;
+        currentMoleculePoints += decane;
+        let x = document.getElementById('decane');
+        currentDecanePoints += decane;
+        x.value = currentDecanePoints;
+        document.getElementById('current-molecule-points').innerHTML = 'Current Points: ' + currentMoleculePoints;
+        document.getElementById('decaneCount').innerHTML = 'Decanes Assembled: ' + decaneCollected;
+        total += decane;
+        document.getElementById('total').value = total;
+        document.getElementById('totalPoints').innerHTML = 'Total Points: ' + total;
+        document.getElementById('scoreTeams').submit();
+    }
+
+    function subDecane() {
+        if (currentDecanePoints > 0) {
+            decaneCollected--;
+            currentMoleculePoints -= decane;
+            let x = document.getElementById('decane');
+            currentDecanePoints -= decane;
+            x.value = currentDecanePoints;
+            //x.value = currentMethanePoints;
+            document.getElementById('current-molecule-points').innerHTML = 'Current Points: ' + currentMoleculePoints;
+            document.getElementById('decaneCount').innerHTML = 'Decanes Assembled: ' + decaneCollected;
+            total -= decane;
+            document.getElementById('total').value = total;
+            document.getElementById('totalPoints').innerHTML = 'Total Points: ' + total;
+            document.getElementById('scoreTeams').submit();
+        }
+    }
+</script>

@@ -1,0 +1,15 @@
+﻿@model RDL.Models.Team
+@{
+    ViewBag.Title = "Team Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Name</h2>
+<ul>
+    <li>Wins: @Model.Score</li>
+    <li>Team Number: @Model.Id</li>
+    <li>City: @Model.City</li>
+    <li>State: @Model.State</li>
+    <li>Division: @Model.division</li>
+</ul>
+

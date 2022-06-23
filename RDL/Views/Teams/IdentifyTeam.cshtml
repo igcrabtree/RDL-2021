@@ -1,0 +1,13 @@
+﻿@model RDL.Models.Team
+@{
+    ViewBag.Title = "Team Number";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("AnswerQuestions", "Teams"))
+{
+    <div class="form-group">
+        @Html.Label("Id")
+        @Html.TextBox("Id")
+    </div>
+}

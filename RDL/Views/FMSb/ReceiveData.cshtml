@@ -1,0 +1,16 @@
+﻿@model RDL.Models.Blue
+@{
+    Layout = null;
+}
+
+@using (Html.BeginForm("Change", "FMSb"))
+{
+    <div class="form-group">
+        @Html.TextBoxFor(m => m.bBeacon, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.TextBoxFor(m => m.bSeismometer, new { @class = "form-control" })
+    </div>
+    @Html.HiddenFor(m => m.Id)
+    <button type="submit" class="btn btn-primary">Change</button>
+}

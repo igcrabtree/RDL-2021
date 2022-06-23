@@ -1,0 +1,17 @@
+﻿@model RDL.ViewModels.testViewModel
+@{
+    ViewBag.Title = "Test Button Stuff";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Add New Team</h2>
+
+@using (Html.BeginForm("Add", "Tests"))
+{
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.testing.Switch)
+        @Html.TextBoxFor(m => m.testing.Switch, new { @class = "form-control" })
+    </div>
+    <button type="submit" class="btn btn-primary">Add Test</button>
+}
+

@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="jumbotron">
+    <h1>New</h1>
+    <button class="btn btn-default" onclick="location.href = '@Url.Action("New", "Matches")';return false;">Score New Match</button>
+</div>
+<div class="jumbotron">
+    <h1>Previous</h1>
+    <button class="btn btn-default" onclick="location.href = '@Url.Action("Previous", "Matches")';return false;">View Previous Matches</button>
+</div>
