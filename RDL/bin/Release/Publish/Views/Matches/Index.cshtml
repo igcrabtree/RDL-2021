@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="jumbotron">
+    <h1>New</h1>
+    @Html.ActionLink("Score a New Match", "New", "Matches")
+</div>
+<div class="jumbotron">
+    <h1>Previous</h1>
+    @Html.ActionLink("View Previous Match Scores", "Previous", "Matches")
+</div>

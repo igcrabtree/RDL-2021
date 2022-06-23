@@ -1,0 +1,32 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body>
+    <h2 class="bool"></h2>
+    <form>
+        <input type="checkbox" id="check" />
+    </form>
+    <script>
+        function displayBool() {
+            let boolEl = document.querySelector('.bool');
+            let checkboxEl = document.querySelector('#check');
+
+            if (checkboxEl.checked === true) {
+                boolEl.textContent = '1';
+            } else {
+                boolEl.textContent = '0';
+            }
+        }
+        displayBool();
+        setInterval(displayBool, 1000);
+    </script>
+</body>
+</html>

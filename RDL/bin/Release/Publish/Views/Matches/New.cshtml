@@ -1,0 +1,105 @@
+﻿
+@{
+    ViewBag.Title = "New";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .form-label {
+        margin-bottom: 5px;
+        font-size: large;
+    }
+    .form-input {
+        margin-bottom: 5px;
+    }
+</style>
+<div class="row">
+    <div class="col-md-4">
+        <form>
+            <label for="red-team-name" class="form-label">Red Team Name</label><br>
+            <input type="text" class="form-input" id="red-team-name" name="red-team-name"><br>
+        </form>
+    </div>
+    <div class="col-md-4">
+        <form>
+            <label for="blue-team-name" class="form-label">Blue Team Name</label><br>
+            <input type="text" class="form-input" id="blue-team-name" name="blue-team-name"><br>
+        </form>
+    </div>
+</div>
+<button class="btn btn-default continue" onclick="location.href = '@Url.Action("Index", "Matches")';return false;">Continue</button>
+<!--
+<style>
+    .team-container {
+        box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+        width: 245px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin: 10px 5px;
+        padding: 4px;
+    }
+</style>
+<div id="red-team-container">
+    <form>
+        <label for="red-team-num">Red Team Name</label><br>
+        <input type="text" id="red-team-name" name="red-team-name"><br>
+    </form>
+</div>
+<div id="blue-team-container">
+    <form>
+        <label for="blue-team-num">Blue Team Name</label><br>
+        <input type="text" id="blue-team-name" name="blue-team-name"><br>
+    </form>
+</div> -->
+<!--
+<h2>Score a Match</h2>
+<form>
+    <label for="red-team-num">Red Team Number</label><br>
+    <input type="text" id="red-team-num" name="red-team-num"><br>
+    <label for="blue-team-num">Blue Team Number</label><br>
+    <input type="text" id="blue-team-num" name="blue-team-num"><br>
+    <br />
+    <br />
+
+    <p>Red Team</p>
+    <br />
+
+    <p>Seismometer</p>
+    <input type="radio" id="seis-auto" name="seismometer" value="auto">
+    <label for="seis-auto">Autonomous</label><br>
+    <input type="radio" id="seis-tele" name="seismometer" value="tele">
+    <label for="seis-tele">Teleop</label><br>
+    <input type="radio" id="seis-not-complete" name="seismometer" value="not-complete">
+    <label for="seis-not-complete">Not Completed</label><br />
+    <br />
+    <br />
+
+    <p>AUV</p>
+    <input type="radio" id="auv-auto" name="auv" value="auto">
+    <label for="auv-auto">Autonomous</label><br>
+    <input type="radio" id="auv-tele" name="auv" value="tele">
+    <label for="auv-tele">Teleop</label><br>
+    <input type="radio" id="auv-not-complete" name="auv" value="not-complete">
+    <label for="auv-not-complete">Not Completed</label><br />
+    <br />
+    <br />
+
+    <p>Satelite Antenna</p>
+    <input type="radio" id="sa-auto" name="sa" value="auto">
+    <label for="sa-auto">Autonomous</label><br>
+    <input type="radio" id="sa-tele" name="sa" value="tele">
+    <label for="sa-tele">Teleop</label><br>
+    <input type="radio" id="sa-not-complete" name="sa" value="not-complete">
+    <label for="sa-not-complete">Not Completed</label><br />
+    <br />
+    <br />
+
+    <p>HydroPods</p>
+    <label for="hp-auto">Number of HydroPods collected in Autonomous</label><br>
+    <input type="text" id="hp-auto" name="hp-auto"><br />
+    <label for="hp-tele">Number of HydroPods collected in Teleop</label><br>
+    <input type="text" id="hp-tele" name="hp-tele">
+    <br />
+    <br />
+
+
+</form>-->

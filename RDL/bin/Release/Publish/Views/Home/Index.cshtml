@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<style>
+    #streamworks-logo {
+        position: relative;
+    }
+</style>
+<div class="jumbotron">
+    <img src="~/Images/STREAMWORKS_SP_Logo-horiz-sm.png" id="streamworks-logo"/>
+    <!--
+    <h1>ASP.NET</h1>
+    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p> -->
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Streamworks</h2>
+        <p>
+            STREAMWORKS is a new educational program that delivers enhanced opportunities for students (grades K–12) 
+            to participate in exciting mentor and project-based programs that focus on science, technology, engineering 
+            and math (STEM) skills; inspire innovation; and foster well-rounded life capabilities.
+        </p>
+        <p><a class="btn btn-default" href="https://streamworkseducation.org/">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>RDL</h2>
+        <p>
+            Challenge based learning unlocks the potential of every student to explore the world of innovative design 
+            and deep understanding of technical concepts. It is all about engagement and Robot Drone League represents 
+            the ultimate challenge for the next generation of students who want to show what they can accomplish, 
+            completely on their own.</p>
+        <p><a class="btn btn-default" href="https://streamworkseducation.org/project/robot-drone-league/">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Upcomng Events</h2>
+        <p>See a list of upcoming events!</p>
+        <p><a class="btn btn-default" onclick="location.href = '@Url.Action("Events", "Matches")';return false;">Events &raquo;</a></p>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+﻿@model IEnumerable<RDL.Models.Team>
+@{
+    ViewBag.Title = "Teams";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Teams</h2>
+@if (!Model.Any())
+{
+    <p>We don't have any teams yet.</p>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Team</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var team in Model)
+            {
+                <tr>
+                    <td>@Html.ActionLink(team.Name, "Details", "Teams", new { id = team.Id}, null)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+<button class="btn btn-default" onclick="location.href = '@Url.Action("New", "Teams")';return false;">Add Team</button>
+
+
