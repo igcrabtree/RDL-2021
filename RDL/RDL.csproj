@@ -1,0 +1,639 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C0486B8F-A8D6-4C49-B0C8-0383AB6B6357}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RDL</RootNamespace>
+    <AssemblyName>RDL</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44315</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.2\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.2\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.2\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.4.0.0\lib\net451\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.4.0.0\lib\net451\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.4.0.0\lib\net451\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.4.0.0\lib\net451\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.4.0.0\lib\net451\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.4.0.0\lib\net451\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.4.0.0\lib\net451\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.4.0.0\lib\net451\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.4.0.0\lib\net451\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ClockController.cs" />
+    <Compile Include="Controllers\FMSbController.cs" />
+    <Compile Include="Controllers\FMSrController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MatchesController.cs" />
+    <Compile Include="Controllers\ScoresController.cs" />
+    <Compile Include="Controllers\TeamsController.cs" />
+    <Compile Include="Controllers\TestsController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010192029002_AddTeams.cs" />
+    <Compile Include="Migrations\202010192029002_AddTeams.Designer.cs">
+      <DependentUpon>202010192029002_AddTeams.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010192052081_AddMatches.cs" />
+    <Compile Include="Migrations\202010192052081_AddMatches.Designer.cs">
+      <DependentUpon>202010192052081_AddMatches.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010302323159_AddLocation.cs" />
+    <Compile Include="Migrations\202010302323159_AddLocation.Designer.cs">
+      <DependentUpon>202010302323159_AddLocation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012191922303_Testing.cs" />
+    <Compile Include="Migrations\202012191922303_Testing.Designer.cs">
+      <DependentUpon>202012191922303_Testing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012191925280_Test.cs" />
+    <Compile Include="Migrations\202012191925280_Test.Designer.cs">
+      <DependentUpon>202012191925280_Test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012191933009_update-testing.cs" />
+    <Compile Include="Migrations\202012191933009_update-testing.Designer.cs">
+      <DependentUpon>202012191933009_update-testing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012192231149_AddBlueAndRedFMSProps.cs" />
+    <Compile Include="Migrations\202012192231149_AddBlueAndRedFMSProps.Designer.cs">
+      <DependentUpon>202012192231149_AddBlueAndRedFMSProps.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012192258356_UpdateNames.cs" />
+    <Compile Include="Migrations\202012192258356_UpdateNames.Designer.cs">
+      <DependentUpon>202012192258356_UpdateNames.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012192309083_UpdateColors.cs" />
+    <Compile Include="Migrations\202012192309083_UpdateColors.Designer.cs">
+      <DependentUpon>202012192309083_UpdateColors.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012262159455_TestStuff.cs" />
+    <Compile Include="Migrations\202012262159455_TestStuff.Designer.cs">
+      <DependentUpon>202012262159455_TestStuff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012262201364_Add-Scoring.cs" />
+    <Compile Include="Migrations\202012262201364_Add-Scoring.Designer.cs">
+      <DependentUpon>202012262201364_Add-Scoring.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012301751266_addStemQuestions.cs" />
+    <Compile Include="Migrations\202012301751266_addStemQuestions.Designer.cs">
+      <DependentUpon>202012301751266_addStemQuestions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202109161937225_AddStemQuestionCorrectAnsAndDivision.cs" />
+    <Compile Include="Migrations\202109161937225_AddStemQuestionCorrectAnsAndDivision.Designer.cs">
+      <DependentUpon>202109161937225_AddStemQuestionCorrectAnsAndDivision.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202109162218340_AddDivisionAndCurrentQuestion.cs" />
+    <Compile Include="Migrations\202109162218340_AddDivisionAndCurrentQuestion.Designer.cs">
+      <DependentUpon>202109162218340_AddDivisionAndCurrentQuestion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202109162321403_AddUsedQuestions.cs" />
+    <Compile Include="Migrations\202109162321403_AddUsedQuestions.Designer.cs">
+      <DependentUpon>202109162321403_AddUsedQuestions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202109162331441_AddUsedQuestionsAttempTwo.cs" />
+    <Compile Include="Migrations\202109162331441_AddUsedQuestionsAttempTwo.Designer.cs">
+      <DependentUpon>202109162331441_AddUsedQuestionsAttempTwo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202109162332503_Add-Team-Id-To-Blue-Model.cs" />
+    <Compile Include="Migrations\202109162332503_Add-Team-Id-To-Blue-Model.Designer.cs">
+      <DependentUpon>202109162332503_Add-Team-Id-To-Blue-Model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202109162334558_AddDivisionToTeamModel.cs" />
+    <Compile Include="Migrations\202109162334558_AddDivisionToTeamModel.Designer.cs">
+      <DependentUpon>202109162334558_AddDivisionToTeamModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111201544378_update-login.cs" />
+    <Compile Include="Migrations\202111201544378_update-login.Designer.cs">
+      <DependentUpon>202111201544378_update-login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111241802513_AddScoringStuff2.cs" />
+    <Compile Include="Migrations\202111241802513_AddScoringStuff2.Designer.cs">
+      <DependentUpon>202111241802513_AddScoringStuff2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111271228553_AddteamIdtoScore.cs" />
+    <Compile Include="Migrations\202111271228553_AddteamIdtoScore.Designer.cs">
+      <DependentUpon>202111271228553_AddteamIdtoScore.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111272108117_AddAnswetToUsedQuestions.cs" />
+    <Compile Include="Migrations\202111272108117_AddAnswetToUsedQuestions.Designer.cs">
+      <DependentUpon>202111272108117_AddAnswetToUsedQuestions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202112012244533_Add-QuestionId-To-Team.cs" />
+    <Compile Include="Migrations\202112012244533_Add-QuestionId-To-Team.Designer.cs">
+      <DependentUpon>202112012244533_Add-QuestionId-To-Team.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202112012310511_Add-QuestionAns-To-Team.cs" />
+    <Compile Include="Migrations\202112012310511_Add-QuestionAns-To-Team.Designer.cs">
+      <DependentUpon>202112012310511_Add-QuestionAns-To-Team.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202112012351488_Add-Questions-To-Team.cs" />
+    <Compile Include="Migrations\202112012351488_Add-Questions-To-Team.Designer.cs">
+      <DependentUpon>202112012351488_Add-Questions-To-Team.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202112012358137_Add-QuestionScore-To-Team.cs" />
+    <Compile Include="Migrations\202112012358137_Add-QuestionScore-To-Team.Designer.cs">
+      <DependentUpon>202112012358137_Add-QuestionScore-To-Team.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202112020002312_Add-Questions-To-Score.cs" />
+    <Compile Include="Migrations\202112020002312_Add-Questions-To-Score.Designer.cs">
+      <DependentUpon>202112020002312_Add-Questions-To-Score.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202112020052049_Add-Stuff-To-Red-Model.cs" />
+    <Compile Include="Migrations\202112020052049_Add-Stuff-To-Red-Model.Designer.cs">
+      <DependentUpon>202112020052049_Add-Stuff-To-Red-Model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202112020208094_UpdateStuff.cs" />
+    <Compile Include="Migrations\202112020208094_UpdateStuff.Designer.cs">
+      <DependentUpon>202112020208094_UpdateStuff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202112021500085_AddTeamQuestion.cs" />
+    <Compile Include="Migrations\202112021500085_AddTeamQuestion.Designer.cs">
+      <DependentUpon>202112021500085_AddTeamQuestion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202112021507416_ChangeAnswerFieldToIntInTeamQuestionModel.cs" />
+    <Compile Include="Migrations\202112021507416_ChangeAnswerFieldToIntInTeamQuestionModel.Designer.cs">
+      <DependentUpon>202112021507416_ChangeAnswerFieldToIntInTeamQuestionModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202112021843590_UpdateMatchModel.cs" />
+    <Compile Include="Migrations\202112021843590_UpdateMatchModel.Designer.cs">
+      <DependentUpon>202112021843590_UpdateMatchModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202112041245124_AddMolecules.cs" />
+    <Compile Include="Migrations\202112041245124_AddMolecules.Designer.cs">
+      <DependentUpon>202112041245124_AddMolecules.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202112041418403_ChangeScoreFromIntToDoubles.cs" />
+    <Compile Include="Migrations\202112041418403_ChangeScoreFromIntToDoubles.Designer.cs">
+      <DependentUpon>202112041418403_ChangeScoreFromIntToDoubles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202203051701149_Add Blue Fog Machine.cs" />
+    <Compile Include="Migrations\202203051701149_Add Blue Fog Machine.Designer.cs">
+      <DependentUpon>202203051701149_Add Blue Fog Machine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202203052011049_Add Red Fog Machine.cs" />
+    <Compile Include="Migrations\202203052011049_Add Red Fog Machine.Designer.cs">
+      <DependentUpon>202203052011049_Add Red Fog Machine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202203052031187_add fan.cs" />
+    <Compile Include="Migrations\202203052031187_add fan.Designer.cs">
+      <DependentUpon>202203052031187_add fan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202203101712565_Change Team Score from int to double.cs" />
+    <Compile Include="Migrations\202203101712565_Change Team Score from int to double.Designer.cs">
+      <DependentUpon>202203101712565_Change Team Score from int to double.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202203101813552_update-Teams.cs" />
+    <Compile Include="Migrations\202203101813552_update-Teams.Designer.cs">
+      <DependentUpon>202203101813552_update-Teams.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202203101828523_stuff.cs" />
+    <Compile Include="Migrations\202203101828523_stuff.Designer.cs">
+      <DependentUpon>202203101828523_stuff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Blue.cs" />
+    <Compile Include="Models\Score.cs" />
+    <Compile Include="Models\ScoreBlue.cs" />
+    <Compile Include="Models\Scoring.cs" />
+    <Compile Include="Models\Clock.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Match.cs" />
+    <Compile Include="Models\Red.cs" />
+    <Compile Include="Models\StemQuestions.cs" />
+    <Compile Include="Models\Team.cs" />
+    <Compile Include="Models\TeamQuestion.cs" />
+    <Compile Include="Models\Testing.cs" />
+    <Compile Include="Models\Tournament.cs" />
+    <Compile Include="Models\UsedQuestions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\BlueDisplayViewModel.cs" />
+    <Compile Include="ViewModels\NewMatchViewModel.cs" />
+    <Compile Include="ViewModels\NewScoreViewModel.cs" />
+    <Compile Include="ViewModels\NewTeamViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\aspnet-RDL-20201019042601.mdf" />
+    <Content Include="App_Data\aspnet-RDL-20201019042601_log.ldf">
+      <DependentUpon>aspnet-RDL-20201019042601.mdf</DependentUpon>
+    </Content>
+    <Content Include="Content\bootstrap-lumen.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Images\RDLHires %281%29.png" />
+    <Content Include="Images\RobotDroneLogoHires.png" />
+    <Content Include="Images\STREAMWORKS_SP_Logo-horiz-sm.png" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Properties\PublishProfiles\AppRDL.pubxml" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\SendCode.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_NavBar.cshtml" />
+    <Content Include="Views\Teams\Index.cshtml" />
+    <Content Include="Views\Teams\Details.cshtml" />
+    <Content Include="Views\Matches\Previous.cshtml" />
+    <Content Include="Views\Matches\Index.cshtml" />
+    <Content Include="Views\Matches\New.cshtml" />
+    <Content Include="Views\Clock\Index.cshtml" />
+    <Content Include="Views\Clock\Start.cshtml" />
+    <Content Include="Views\Teams\New.cshtml" />
+    <Content Include="Views\Matches\Events.cshtml" />
+    <Content Include="Views\Tests\PiTest.cshtml" />
+    <Content Include="Views\Tests\ReceiveData.cshtml" />
+    <Content Include="Views\FMSr\Display.cshtml" />
+    <Content Include="Views\FMSr\ReceiveData.cshtml" />
+    <Content Include="Views\FMSb\Display.cshtml" />
+    <Content Include="Views\FMSb\ReceiveData.cshtml" />
+    <Content Include="Views\Teams\AnswerQuestions.cshtml" />
+    <Content Include="Views\Scores\New.cshtml" />
+    <Content Include="Views\Scores\Index.cshtml" />
+    <Compile Include="ViewModels\RedDisplayViewModel.cs" />
+    <Compile Include="ViewModels\StemQViewModel.cs" />
+    <Compile Include="ViewModels\testViewModel.cs" />
+    <Content Include="Views\Tests\testButton.cshtml" />
+    <Content Include="Views\Teams\IdentifyTeam.cshtml" />
+    <Content Include="Views\Teams\AddPoints.cshtml" />
+    <Content Include="Views\Matches\Test.cshtml" />
+    <Content Include="Views\Scores\Add.cshtml" />
+    <Content Include="Views\Scores\AddBonusQuestion.cshtml" />
+    <Content Include="Views\Scores\DisplayScores.cshtml" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202010192029002_AddTeams.resx">
+      <DependentUpon>202010192029002_AddTeams.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010192052081_AddMatches.resx">
+      <DependentUpon>202010192052081_AddMatches.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010302323159_AddLocation.resx">
+      <DependentUpon>202010302323159_AddLocation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012191922303_Testing.resx">
+      <DependentUpon>202012191922303_Testing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012191925280_Test.resx">
+      <DependentUpon>202012191925280_Test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012191933009_update-testing.resx">
+      <DependentUpon>202012191933009_update-testing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012192231149_AddBlueAndRedFMSProps.resx">
+      <DependentUpon>202012192231149_AddBlueAndRedFMSProps.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012192258356_UpdateNames.resx">
+      <DependentUpon>202012192258356_UpdateNames.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012192309083_UpdateColors.resx">
+      <DependentUpon>202012192309083_UpdateColors.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012262159455_TestStuff.resx">
+      <DependentUpon>202012262159455_TestStuff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012262201364_Add-Scoring.resx">
+      <DependentUpon>202012262201364_Add-Scoring.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012301751266_addStemQuestions.resx">
+      <DependentUpon>202012301751266_addStemQuestions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202109161937225_AddStemQuestionCorrectAnsAndDivision.resx">
+      <DependentUpon>202109161937225_AddStemQuestionCorrectAnsAndDivision.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202109162218340_AddDivisionAndCurrentQuestion.resx">
+      <DependentUpon>202109162218340_AddDivisionAndCurrentQuestion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202109162321403_AddUsedQuestions.resx">
+      <DependentUpon>202109162321403_AddUsedQuestions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202109162331441_AddUsedQuestionsAttempTwo.resx">
+      <DependentUpon>202109162331441_AddUsedQuestionsAttempTwo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202109162332503_Add-Team-Id-To-Blue-Model.resx">
+      <DependentUpon>202109162332503_Add-Team-Id-To-Blue-Model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202109162334558_AddDivisionToTeamModel.resx">
+      <DependentUpon>202109162334558_AddDivisionToTeamModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111201544378_update-login.resx">
+      <DependentUpon>202111201544378_update-login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111241802513_AddScoringStuff2.resx">
+      <DependentUpon>202111241802513_AddScoringStuff2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111271228553_AddteamIdtoScore.resx">
+      <DependentUpon>202111271228553_AddteamIdtoScore.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111272108117_AddAnswetToUsedQuestions.resx">
+      <DependentUpon>202111272108117_AddAnswetToUsedQuestions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112012244533_Add-QuestionId-To-Team.resx">
+      <DependentUpon>202112012244533_Add-QuestionId-To-Team.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112012310511_Add-QuestionAns-To-Team.resx">
+      <DependentUpon>202112012310511_Add-QuestionAns-To-Team.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112012351488_Add-Questions-To-Team.resx">
+      <DependentUpon>202112012351488_Add-Questions-To-Team.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112012358137_Add-QuestionScore-To-Team.resx">
+      <DependentUpon>202112012358137_Add-QuestionScore-To-Team.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112020002312_Add-Questions-To-Score.resx">
+      <DependentUpon>202112020002312_Add-Questions-To-Score.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112020052049_Add-Stuff-To-Red-Model.resx">
+      <DependentUpon>202112020052049_Add-Stuff-To-Red-Model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112020208094_UpdateStuff.resx">
+      <DependentUpon>202112020208094_UpdateStuff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112021500085_AddTeamQuestion.resx">
+      <DependentUpon>202112021500085_AddTeamQuestion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112021507416_ChangeAnswerFieldToIntInTeamQuestionModel.resx">
+      <DependentUpon>202112021507416_ChangeAnswerFieldToIntInTeamQuestionModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112021843590_UpdateMatchModel.resx">
+      <DependentUpon>202112021843590_UpdateMatchModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112041245124_AddMolecules.resx">
+      <DependentUpon>202112041245124_AddMolecules.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112041418403_ChangeScoreFromIntToDoubles.resx">
+      <DependentUpon>202112041418403_ChangeScoreFromIntToDoubles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202203051701149_Add Blue Fog Machine.resx">
+      <DependentUpon>202203051701149_Add Blue Fog Machine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202203052011049_Add Red Fog Machine.resx">
+      <DependentUpon>202203052011049_Add Red Fog Machine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202203052031187_add fan.resx">
+      <DependentUpon>202203052031187_add fan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202203101712565_Change Team Score from int to double.resx">
+      <DependentUpon>202203101712565_Change Team Score from int to double.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202203101813552_update-Teams.resx">
+      <DependentUpon>202203101813552_update-Teams.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202203101828523_stuff.resx">
+      <DependentUpon>202203101828523_stuff.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>49988</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44315/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>
